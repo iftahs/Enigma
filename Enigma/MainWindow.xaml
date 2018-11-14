@@ -1,0 +1,101 @@
+﻿<Window x:Class="Enigma.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Enigma"
+        mc:Ignorable="d"
+        Title="Enigma" Width="687" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" HorizontalAlignment="Center" VerticalAlignment="Center" Height="351">
+    <Grid Height="auto">
+        <TextBox x:Name="txtInput" HorizontalAlignment="Left" Height="100" Margin="10,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" KeyDown="txtInput_KeyDown" KeyUp="txtInput_KeyUp"/>
+        <Label Content="Input text:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Output text:" HorizontalAlignment="Left" Margin="10,146,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtOutput" HorizontalAlignment="Left" Height="100" Margin="10,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" IsReadOnly="True"/>
+        <Label x:Name="lblLeftRotor" Content="A" HorizontalAlignment="Left" Margin="406,200,0,0" VerticalAlignment="Top" Width="44" Height="42" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" BorderThickness="1" BorderBrush="Black"/>
+        <Label x:Name="lblMiddleRotor" Content="A" HorizontalAlignment="Left" Margin="455,200,0,0" VerticalAlignment="Top" Width="44" Height="42" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" BorderThickness="1" BorderBrush="Black"/>
+        <Label x:Name="lblRightRotor" Content="A" HorizontalAlignment="Left" Margin="504,200,0,0" VerticalAlignment="Top" Width="44" Height="42" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" BorderThickness="1" BorderBrush="Black"/>
+        <ComboBox x:Name="cmbLeftRotor" HorizontalAlignment="Left" Margin="406,10,0,0" VerticalAlignment="Top" Width="44" SelectionChanged="cmbLeftRotor_SelectionChanged"></ComboBox>
+        <ComboBox x:Name="cmbMiddleRotor" HorizontalAlignment="Left" Margin="455,10,0,0" VerticalAlignment="Top" Width="44" SelectionChanged="cmbMiddleRotor_SelectionChanged"></ComboBox>
+        <ComboBox x:Name="cmbRightRotor" HorizontalAlignment="Left" Margin="504,10,0,0" VerticalAlignment="Top" Width="44" SelectionChanged="cmbRightRotor_SelectionChanged"></ComboBox>
+        <ListBox x:Name="lbxPlugBoardPairs" HorizontalAlignment="Left" Height="140" Margin="566,69,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="btnAddPair" Content="Add" HorizontalAlignment="Left" Margin="627,41,0,0" VerticalAlignment="Top" Width="39" Click="btnAddPair_Click" Height="23"/>
+        <Button x:Name="btnRemovePair" Content="Remove selected" HorizontalAlignment="Left" Margin="566,217,0,0" VerticalAlignment="Top" Width="100" Click="btnRemovePair_Click"/>
+        <Label Content="Plugboard" HorizontalAlignment="Left" Margin="566,10,0,0" VerticalAlignment="Top"/>
+
+        <Button x:Name="btnLeftUp" HorizontalAlignment="Left" Margin="406,165,0,0" VerticalAlignment="Top" Width="44" Height="30" Background="White" Click="btnLeftUp_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Images/Up Arrow.jpg" Width="20" Height="20"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnMiddleUp" HorizontalAlignment="Left" Margin="455,165,0,0" VerticalAlignment="Top" Width="44" Height="30" Background="White" Click="btnMiddleUp_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Images/Up Arrow.jpg" Width="20" Height="20"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnRightUp" HorizontalAlignment="Left" Margin="504,165,0,0" VerticalAlignment="Top" Width="44" Height="30" Background="White" Click="btnRightUp_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Images/Up Arrow.jpg" Width="20" Height="20"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnLeftDown" HorizontalAlignment="Left" Margin="406,247,0,0" VerticalAlignment="Top" Width="44" Height="30" Background="White" Click="btnLeftDown_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Images/Down Arrow.jpg" Width="20" Height="20"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnMiddleDown" HorizontalAlignment="Left" Margin="455,247,0,0" VerticalAlignment="Top" Width="44" Height="30" Background="White" Click="btnMiddleDown_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Images/Down Arrow.jpg" Width="20" Height="20"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnRightDown" HorizontalAlignment="Left" Margin="504,247,0,0" VerticalAlignment="Top" Width="44" Height="30" Background="White" Click="btnRightDown_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Images/Down Arrow.jpg" Width="20" Height="20"/>
+            </StackPanel>
+        </Button>
+        <TextBox x:Name="txtFirstLetter" HorizontalAlignment="Left" Height="23" Margin="566,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="26" VerticalContentAlignment="Center" ToolTip="First letter" MaxLength="1"/>
+        <TextBox x:Name="txtSecondLetter" HorizontalAlignment="Left" Height="23" Margin="597,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="25" VerticalContentAlignment="Center" ToolTip="Second letter" RenderTransformOrigin="-0.064,0.609" MaxLength="1"/>
+        <Button x:Name="btnAutoEncDec" Content="Encrypt / Decrypt" HorizontalAlignment="Left" Margin="210,146,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.707,0.2" Height="26" Click="btnAutoEncDec_Click"/>
+        <Label x:Name="lblLeftRotorRing" Content="A" HorizontalAlignment="Left" Margin="406,76,0,0" VerticalAlignment="Top" Width="44" Height="42" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" BorderThickness="1" BorderBrush="Black"/>
+        <Label x:Name="lblMiddleRotorRing" Content="A" HorizontalAlignment="Left" Margin="455,76,0,0" VerticalAlignment="Top" Width="44" Height="42" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" BorderThickness="1" BorderBrush="Black"/>
+        <Label x:Name="lblRightRotorRing" Content="A" HorizontalAlignment="Left" Margin="504,76,0,0" VerticalAlignment="Top" Width="44" Height="42" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" BorderThickness="1" BorderBrush="Black"/>
+        <Button x:Name="btnLeftUpRing" HorizontalAlignment="Left" Margin="406,41,0,0" VerticalAlignment="Top" Width="44" Height="30" Background="White" Click="btnLeftUpRing_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Images/Up Arrow.jpg" Width="20" Height="20"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnMiddleUpRing" HorizontalAlignment="Left" Margin="455,41,0,0" VerticalAlignment="Top" Width="44" Height="30" Background="White" Click="btnMiddleUpRing_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Images/Up Arrow.jpg" Width="20" Height="20"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnRightUpRing" HorizontalAlignment="Left" Margin="504,41,0,0" VerticalAlignment="Top" Width="44" Height="30" Background="White" Click="btnRightUpRing_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Images/Up Arrow.jpg" Width="20" Height="20"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnLeftDownRing" HorizontalAlignment="Left" Margin="406,123,0,0" VerticalAlignment="Top" Width="44" Height="30" Background="White" Click="btnLeftDownRing_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Images/Down Arrow.jpg" Width="20" Height="20"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnMiddleDownRing" HorizontalAlignment="Left" Margin="455,123,0,0" VerticalAlignment="Top" Width="44" Height="30" Background="White" Click="btnMiddleDownRing_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Images/Down Arrow.jpg" Width="20" Height="20"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnRightDownRing" HorizontalAlignment="Left" Margin="504,123,0,0" VerticalAlignment="Top" Width="44" Height="30" Background="White" Click="btnRightDownRing_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Images/Down Arrow.jpg" Width="20" Height="20"/>
+            </StackPanel>
+        </Button>
+        <Separator HorizontalAlignment="Left" Height="12" Margin="406,153,0,0" VerticalAlignment="Top" Width="142"/>
+        <Label Content="Rotor:" HorizontalAlignment="Left" Margin="315,10,0,0" VerticalAlignment="Top" Width="86" HorizontalContentAlignment="Right"/>
+        <Label Content="Ring Settings:" HorizontalAlignment="Left" Margin="315,76,0,0" VerticalAlignment="Top" Width="86" Height="42" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+        <Label Content="Offset:" HorizontalAlignment="Left" Margin="315,200,0,0" VerticalAlignment="Top" Width="86" Height="42" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+        <Label Content="Dev by Iftah Saar" HorizontalAlignment="Left" Margin="566,247,0,0" VerticalAlignment="Top" Height="30" Width="100"/>
+        <Button x:Name="btnClear" Content="Clear" HorizontalAlignment="Left" Margin="130,146,0,0" VerticalAlignment="Top" Width="75" Height="26" Click="btnClear_Click"/>
+        <Button x:Name="btnRandomSettings" Content="Get Random Settings" HorizontalAlignment="Left" Margin="406,282,0,0" VerticalAlignment="Top" Width="142" Height="22" Click="btnRandomSettings_Click"/>
+        <Button x:Name="btnRandomMessage" Content="Get Random Message" HorizontalAlignment="Left" Margin="181,10,0,0" VerticalAlignment="Top" Width="129" Height="26" Click="btnRandomMessage_Click"/>
+
+    </Grid>
+</Window>
