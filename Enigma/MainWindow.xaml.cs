@@ -143,21 +143,21 @@ namespace Enigma
 
         private void btnRightUp_Click(object sender, RoutedEventArgs e)
         {
-            rightRotor.MoveUp(false);
+            rightRotor.MoveUp();
             UpdateOffsetLabel();
             ResetText();
         }
 
         private void btnMiddleUp_Click(object sender, RoutedEventArgs e)
         {
-            middleRotor.MoveUp(false);
+            middleRotor.MoveUp();
             UpdateOffsetLabel();
             ResetText();
         }
 
         private void btnLeftUp_Click(object sender, RoutedEventArgs e)
         {
-            leftRotor.MoveUp(false);
+            leftRotor.MoveUp();
             UpdateOffsetLabel();
             ResetText();
         }
@@ -225,7 +225,7 @@ namespace Enigma
 
             char key = e.Key.ToString()[0];
 
-            rightRotor.MoveUp(true);
+            MoveRotors();
             UpdateOffsetLabel();
             char output = GetPlugboardTrans(rightRotor.GetInput(GetPlugboardTrans(key)));
             txtOutput.Text += output;
@@ -253,6 +253,17 @@ namespace Enigma
             txtOutput.Clear();
         }
 
+        private void MoveRotors()
+        {
+            if (rightRotor.NotchPosition == rightRotor.Offset || middleRotor.NotchPosition == middleRotor.Offset)
+            {
+                if (middleRotor.NotchPosition == middleRotor.Offset)
+                    leftRotor.MoveUp();
+                middleRotor.MoveUp();
+            }
+            rightRotor.MoveUp();
+        }
+
         private void DoAutoEncryption()
         {
             if (txtInput.Text.Length > 0)
@@ -262,7 +273,7 @@ namespace Enigma
                     char letter = txtInput.Text.ToUpper()[i];
                     if (letter >= 'A' && letter <= 'Z')
                     {
-                        rightRotor.MoveUp(true);
+                        MoveRotors();
                         char output = GetPlugboardTrans(rightRotor.GetInput(GetPlugboardTrans(letter)));
                         txtOutput.Text += output;
                     }

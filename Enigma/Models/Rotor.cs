@@ -31,11 +31,8 @@ namespace Enigma.Models
             Ab = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         }
 
-        public void MoveUp(bool input)
+        public void MoveUp()
         {
-            if (input && Offset == NotchPosition && !NextRotor.Reflector)
-                NextRotor.MoveUp(input);
-
             if (Offset == 'Z')
                 Offset = 'A';
             else
